@@ -1,0 +1,540 @@
+<title>Campus Market</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f6fa;
+        color: #222;
+    }
+
+    /* Header */
+    header {
+        background: #1e3a8a;
+        color: white;
+        padding: 20px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #facc15;
+    }
+
+    /* Hero */
+    .hero {
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        color: white;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .hero h2 {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+    .hero button {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 6px;
+        background: #facc15;
+        color: #111;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Section */
+    .section {
+        width: 90%;
+        max-width: 1200px;
+        margin: 40px auto;
+    }
+
+    .section h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #1e3a8a;
+    }
+
+    /* Category buttons */
+    .categories {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .categories button {
+        padding: 10px 18px;
+        margin: 5px;
+        border: none;
+        border-radius: 20px;
+        background: #ddd;
+        cursor: pointer;
+    }
+
+    .categories button:hover {
+        background: #2563eb;
+        color: white;
+    }
+
+    /* Products */
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+    }
+
+    .product {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+
+    .product:hover {
+        transform: translateY(-5px);
+    }
+
+    .product img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .product-info {
+        padding: 18px;
+    }
+
+    .product-info h3 {
+        margin-bottom: 8px;
+    }
+
+    .price {
+        color: #16a34a;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .buy-btn {
+        width: 100%;
+        padding: 10px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .buy-btn:hover {
+        background: #1d4ed8;
+    }
+
+    /* Sell Form */
+    .sell-box {
+        background: white;
+        max-width: 600px;
+        margin: auto;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    }
+
+    .sell-box input,
+    .sell-box select,
+    .sell-box textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .sell-box textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    .sell-btn {
+        width: 100%;
+        padding: 12px;
+        background: #16a34a;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .sell-btn:hover {
+        background: #15803d;
+    }
+
+    /* Cart */
+    .cart {
+        background: #111827;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Footer */
+    footer {
+        background: #1e293b;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+        header {
+            text-align: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav a {
+            margin: 5px;
+        }
+
+        .hero h2 {
+            font-size: 30px;
+        }
+    }
+</style>
+<!-- Header -->
+<header>
+    <h1>🛍️ Campus Market</h1>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Buy</a>
+        <a href="#sell">Sell</a>
+        <a href="#cart">Cart 🛒</a>
+    </nav>
+</header>
+
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <h2>Buy & Sell Anything</h2>
+    <p>Clothes, shoes, books, electronics and more!</p>
+
+    <button onclick="document.getElementById('products').scrollIntoView()">
+        Start Shopping
+    </button>
+</section>
+
+
+<!-- Products Section -->
+<section class="section" id="products">
+
+    <h2>Available Products</h2>
+
+    <!-- Categories -->
+    <div class="categories">
+        <button onclick="filterProducts('all')">All</button>
+        <button onclick="filterProducts('clothes')">Clothes</button>
+        <button onclick="filterProducts('shoes')">Shoes</button>
+        <button onclick="filterProducts('electronics')">Electronics</button>
+        <button onclick="filterProducts('books')">Books</button>
+    </div>
+
+
+    <!-- Product Cards -->
+    <div class="products">
+
+        <div class="product" data-category="clothes">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80">
+
+            <div class="product-info">
+                <h3>White T-Shirt</h3>
+                <p>Comfortable cotton T-shirt</p>
+                <div class="price">₹499</div>
+
+                <button class="buy-btn"
+                    onclick="addToCart('White T-Shirt', 499)">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+
+        <div class="product" data-category="shoes">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80">
+
+            <div class="product-info">
+                <h3>Running Shoes</h3>
+                <p>Comfortable sports shoes</p>
+                <div class="price">₹1,499</div>
+
+                <button class="buy-btn"
+                    onclick="addToCart('Running Shoes', 1499)">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+
+        <div class="product" data-category="electronics">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80">
+
+            <div class="product-info">
+                <h3>Headphones</h3>
+                <p>Wireless headphones</p>
+                <div class="price">₹999</div>
+
+                <button class="buy-btn"
+                    onclick="addToCart('Headphones', 999)">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+
+        <div class="product" data-category="books">
+            <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=600&q=80">
+
+            <div class="product-info">
+                <h3>Programming Book</h3>
+                <p>Learn programming fundamentals</p>
+                <div class="price">₹399</div>
+
+                <button class="buy-btn"
+                    onclick="addToCart('Programming Book', 399)">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Sell Section -->
+<section class="section" id="sell">
+
+    <h2>Sell Your Product</h2>
+
+    <div class="sell-box">
+
+        <form onsubmit="sellProduct(event)">
+
+            <label>Product Name</label>
+            <input type="text"
+                   id="productName"
+                   placeholder="Example: Blue Jeans"
+                   required>
+
+
+            <label>Category</label>
+
+            <select id="productCategory" required>
+                <option value="">Select Category</option>
+                <option value="clothes">Clothes</option>
+                <option value="shoes">Shoes</option>
+                <option value="electronics">Electronics</option>
+                <option value="books">Books</option>
+                <option value="other">Other</option>
+            </select>
+
+
+            <label>Price (₹)</label>
+
+            <input type="number"
+                   id="productPrice"
+                   placeholder="Example: 800"
+                   required>
+
+
+            <label>Description</label>
+
+            <textarea id="productDescription"
+                      placeholder="Describe your product..."
+                      required></textarea>
+
+
+            <label>Product Image</label>
+
+            <input type="file"
+                   id="productImage"
+                   accept="image/*">
+
+
+            <button class="sell-btn" type="submit">
+                List Product
+            </button>
+
+        </form>
+
+    </div>
+</section>
+
+
+<!-- Cart -->
+<section class="cart" id="cart">
+
+    <h2>🛒 Shopping Cart</h2>
+
+    <p id="cartItems">
+        Your cart is empty.
+    </p>
+
+    <h3 id="total">
+        Total: ₹0
+    </h3>
+
+    <br>
+
+    <button class="buy-btn"
+            onclick="checkout()">
+        Proceed to Checkout
+    </button>
+
+</section>
+
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Campus Market | Buy & Sell Easily</p>
+</footer>
+
+
+<!-- JavaScript -->
+<script>
+
+    let cart = [];
+    let total = 0;
+
+
+    // Add product to cart
+    function addToCart(name, price) {
+
+        cart.push({
+            name: name,
+            price: price
+        });
+
+        total += price;
+
+        displayCart();
+
+        alert(name + " added to cart!");
+    }
+
+
+    // Display cart
+    function displayCart() {
+
+        const cartItems = document.getElementById("cartItems");
+
+        if (cart.length === 0) {
+            cartItems.innerHTML = "Your cart is empty.";
+        } else {
+
+            cartItems.innerHTML = cart.map(function(item) {
+
+                return item.name + " - ₹" + item.price;
+
+            }).join("<br>");
+        }
+
+        document.getElementById("total").innerHTML =
+            "Total: ₹" + total;
+    }
+
+
+    // Checkout
+    function checkout() {
+
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        alert(
+            "Order placed successfully!\n" +
+            "Total amount: ₹" + total
+        );
+
+        cart = [];
+        total = 0;
+
+        displayCart();
+    }
+
+
+    // Product filtering
+    function filterProducts(category) {
+
+        const products =
+            document.querySelectorAll(".product");
+
+        products.forEach(function(product) {
+
+            if (
+                category === "all" ||
+                product.dataset.category === category
+            ) {
+
+                product.style.display = "block";
+
+            } else {
+
+                product.style.display = "none";
+            }
+
+        });
+    }
+
+
+    // Sell product
+    function sellProduct(event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("productName").value;
+
+        const category =
+            document.getElementById("productCategory").value;
+
+        const price =
+            document.getElementById("productPrice").value;
+
+        alert(
+            "Product listed successfully!\n\n" +
+            "Product: " + name + "\n" +
+            "Category: " + category + "\n" +
+            "Price: ₹" + price
+        );
+
+        document.querySelector(".sell-box form").reset();
+    }
+
+</script>
